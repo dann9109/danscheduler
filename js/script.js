@@ -50,18 +50,27 @@ $(function () {
     }
   });
 
-  // Get user input from local storage and set textarea values
-  $(".time-block").each(function () {
-    // Get the id of the time block
-    var timeBlockId = $(this).attr("id");
-    // Get the user input from local storage using the time block id as the key
-    var savedInput = localStorage.getItem(timeBlockId);
-    // Set the value of the textarea to the saved user input
-    $(this).find(".description").val(savedInput);
-  });
 
   // Display the current date in the header
   $("#currentDay").text(dayjs().format("MMM DD, YYYY [at] hh:mm:ss a"));
+
+
+  // Get all the div elements
+  var divs = document.getElementsByTagName('div');
+
+  // Loop through each div element
+  for (var i = 0; i < divs.length; i++) {
+    var div = divs[i];
+
+    // Check the class of the div element
+    if (div.classList.contains('present')) {
+      div.classList.add = 'present';
+    } else if (div.classList.contains('future')) {
+      div.classList.add('future');
+    } else if (div.classList.contains('past')) {
+      div.classList.add('past');
+    }
+  }
 });
 
 
