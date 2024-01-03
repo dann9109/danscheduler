@@ -35,17 +35,7 @@ $(function () {
   //   console.log("localStorage is supported.");
   // }
 
-  // Add a listener for click events on the save button
-  $(".saveBtn").on("click", function () {
-    // Get the id of the containing time-block
-    var timeBlockId = $(this).parent().attr("id");
-    // Get the user input from the textarea
-    var userInput = $(this).siblings(".description").val();
-    // Save the user input in local storage using the time block id as the key
-    console.log("Time block ID:", timeBlockId);
-    console.log("User input:", userInput);
-    localStorage.setItem(timeBlockId, userInput);
-  });
+
 
   // Display the current date in the header
   $("#currentDay").text(dayjs().format("MMM D, YYYY"));
@@ -59,6 +49,7 @@ $(function () {
     var timeSlot = $("<div>").addClass("row time-block");
     // Create a label for the time slot
     var timeLabel = $("<div>")
+      .attr('id', 'hour-' + hour)
       .addClass("col-2 col-md-1 hour text-center py-3")
       .text(dayjs().hour(hour).format("hA"));
     // Create an input field for the event
@@ -90,4 +81,16 @@ $(function () {
     // Append the time slot to the container
     timeSlotsContainer.append(timeSlot);
   }
+  // Add a listener for click events on the save button
+  $(".saveBtn").on("click", function () {
+    // Get the id of the containing time-block
+    var timeBlockId = $(this).parent().attr("id");
+    // Get the user input from the textarea
+    var userInput = $(this).siblings(".description").val();
+    // Save the user input in local storage using the time block id as the key
+    console.log("Time block ID:", timeBlockId);
+    console.log("User input:", userInput);
+    localStorage.setItem(timeBlockId, userInput);
+  });
 });
+
